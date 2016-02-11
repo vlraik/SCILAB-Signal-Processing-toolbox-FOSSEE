@@ -34,14 +34,14 @@ function [a,efinal] = rc2poly( k,varargin)
 if rhs==1 then
 	a = k(1); //sets the output vector a to the first element of k
 	for i = 2:length(k) //loop through the remaining elements of k
-		a = [ a+conj(a(i-1:-1:1))*k(i)  k(i) ]; 
+		a = [ a+conj(a(i-1:-1:1))*k(i)  k(i) ]; //levinson's recursion
 	end  
 	a = [1 a]; 
 	return a
 elseif rhs>1 then //to find efinal
 	a = k(1); 
 	for i = 2:length(k) 
-		a = [ a+conj(a(i-1:-1:1))*k(i)  k(i) ];
+		a = [ a+conj(a(i-1:-1:1))*k(i)  k(i) ]; //levinson's recursion
 	end  
 	a = [1 a]; 
 	return a,a($) //return the prediction polynomial
