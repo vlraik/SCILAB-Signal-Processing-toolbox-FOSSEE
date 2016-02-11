@@ -19,8 +19,11 @@ a =
     1.0000    0.6148    0.9899    0.0000    0.0032   -0.0082
 The Algorithm works in the following way using the Lenvinson's recursion:
 [1] Sets the output vector a to the first element of k
+
 [2]Loop through the remaining elements of k, such that,
-   for each iteration i,a = [a + a(i-1:-1:1)*k(i) k(i)]
+   for each iteration i,a = [a + a(i-1: -1 :1)*k(i) k(i)]
+   
+   
 [3] Implements a =[1 a]
 
 
@@ -48,15 +51,25 @@ lsf =
 The Algorithm works in the following way:
 [1] First it checks whether the polynomials should be normalised or not because
     linear spectral frequencies are not defined for complex polynomials
+    
 [2]Then checks whether the roots are inside of the unit circle
+
 [3]Creates the suma and the difference filters
+
 [4]The leading one is not used for the calculation, and the order is decided
+
 [5]If order is even, we have to remove the known roots at z=1 for P1(difference filter) and z=-1 for Q1(sum filter)
+
 [6]If odd, remove both the roots from P1
+
 [7]deconvolution of P1 and Q1 respectively
+
 [8]Find the roots of the Quotient of P1 and Q1
+
 [9]Find the phase between the real and the imaginary part of the roots of the quotient of P1 and Q1
+
 [10]Sort the phase and return the output
+
 
 
 
