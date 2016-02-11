@@ -38,20 +38,24 @@
  */ 
 
 function lsf = poly2lsf(a)
+  //Line spectral frequencies are not defined for complex polynomials
+  //Therefore, we need to normalise them
  	if a(1)<>1 then
  		a=a/a(1)
  	end
+ 	
  	if max(abs(roots(a))) >= 1.0 then
  		error('The polynomial must have all the roots inside of the unit circle.')
  	end
- 	p=length(a)-1
+ 	
+ 	//Create the sum and the difference filters
+ 	p=length(a)-1  //The first element '1' is not used
  	x=[0]
  	a1=cat(2,a,x)
  	a2=flipdim(a1,2,1)
- 	P1 = a1 - a2
- 	Q1 = a1 + a2
-
- 	P2=P1(1)
+ 	P1 = a1 - a2   //Difference filter
+ 	Q1 = a1 + a2   //Sum filter
+ 	P2=P1(1) 
  	Q2=P2(1)
  	z=poly(0,"z")
  	for i=2:length(P1)
@@ -63,10 +67,12 @@ function lsf = poly2lsf(a)
  	divisorOdd=-1*z^2+0*z^1+1
  	divisorEven1=-1*z^1+1
  	divisorEven2=1*z^1+1
- 	if modulo(p,2) then
+ 	//If order is even, we have to remove the known roots at z=1 for P1 and z=-1 for Q1
+  //If odd, remove both the roots from P1
+ 	if modulo(p,2) then //Odd order
  		[r,P]= pdiv(P2,divisorOdd)
  		Q=Q1
- 	else
+ 	else  //Even order
  		[r, P] = pdiv(P2, divisorEven1)
  		[r, Q] = pdiv(P2, divisorEven2)
  	end
