@@ -63,7 +63,6 @@ function lsf = poly2lsf(a)
  	divisorOdd=-1*z^2+0*z^1+1
  	divisorEven1=-1*z^1+1
  	divisorEven2=1*z^1+1
- 	disp(divisorEven1,divisorEven2,divisorOdd)
  	if modulo(p,2) then
  		[r,P]= pdiv(P2,divisorOdd)
  		Q=Q1
