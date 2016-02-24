@@ -6,7 +6,7 @@ function [acur,ecur] =  levdown(anxt, varargin)
         error('At least one of the reflection coefficients is equal to one.')
     end
 
-    anxt = anxt(2:length(a)) //  Drop the leading 1, it is not needed 
+    anxt = anxt(2:length(anxt)) //  Drop the leading 1, it is not needed 
                              //  in the step down
 
     // Extract the k+1'th reflection coefficient
@@ -41,7 +41,7 @@ function [acur,ecur] =  levdown(anxt, varargin)
     if anxt(1)<>1 then
         error('At least one of the reflection coefficients is equal to one.')
     end
-    anxt = anxt(2:length(a)) //  Drop the leading 1, it is not needed 
+    anxt = anxt(2:length(anxt)) //  Drop the leading 1, it is not needed 
                              //  in the step down
     // Extract the k+1'th reflection coefficient
     knxt = anxt($)
